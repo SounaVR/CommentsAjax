@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ListController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card bg-light mb-3 mt-3">
+                <div class="card-body">
+                <div class="card-header">List of top technology companies</div>
+                    <table class="table">
+                        <tr>
+                            <th>Company Name</th>
+                            <th>Market Value</th>
+                        </tr>
+                        {% for key, item in companies %}
+                        <tr>
+                            <td>{{ key }}</td>
+                            <td>{{ item }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

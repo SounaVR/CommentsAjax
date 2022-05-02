@@ -1,0 +1,13 @@
+# config/packages/easy_admin.yaml
+easy_admin:
+    entities:
+        Article:
+            list:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%kernel.project_dir%/public/images/products' }
+            show:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%kernel.project_dir%/public/images/products' }
+            form:
+                fields:
+                    - { property: 'imageFile', type: 'vich_image' }

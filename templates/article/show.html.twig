@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-around flex-wrap">
+            {# boucle sur le tableau $articles du controller#}
+            {% for article in pagination %}
+            <div class="card">
+                <div class="card-header">
+                    Créé le {{ article.date | date("d/m/Y") }}
+                </div>
+                {% if article.image %}
+                    <img src="{{ vich_uploader_asset(article, 'imageFile')|imagine_filter('square') }}" class="card-img-top">
+                {% else %}
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ article.titre }}</h5>
+                    <p class="card-text">{{ article.contenu }}</p>
+                    <a href="{{ path('show_article_id', {id: article.id}) }}" class="btn btn-primary">Voir l'article</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="container d-flex justify-content-around mt-4">
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+</div>
+{% endblock %}

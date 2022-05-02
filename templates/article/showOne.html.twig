@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-around flex-wrap">
+            {# boucle sur le tableau $articles du controller#}
+            <div class="card">
+                <div class="card-header">
+                    Créé le {{ article.date | date("d/m/Y") }}
+                </div>
+                {% if article.image %}
+                    <img src="{{ vich_uploader_asset(article, 'imageFile')|imagine_filter('square') }}" class="card-img-top">
+                {% else %}
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ article.titre }}</h5>
+                    <p class="card-text">{{ article.contenu }}</p>
+                </div>
+                <div class="card-footer">
+                    <span class="comment-count">{{ article.comments|length }}</span> commentaire(s)
+                    <hr>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <div class="comment-area mb-5">
+                        {{ form(commentForm, { 'attr': { 'class': 'comment-form' } }) }}
+                    </div>
+                    {% endif %}
+
+                    <div class="comment-list">
+                        {% for comment in article.comments %}
+                            {% include 'comment/index.html.twig' with [comment] %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
