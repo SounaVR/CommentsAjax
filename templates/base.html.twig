@@ -24,6 +24,8 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="nav navbar-nav navbar-right d-flex">
                         {% if app.user %}
+                        <li><a class="nav-link" href="{{ path('app_livre') }}">Add Livre</a></li>
+                        <li><a class="nav-link" href="{{ path('show_livre') }}">Show Livres</a></li>
                         <li><a class="nav-link" href="{{ path('app_article') }}">Add Article</a></li>
                         <li><a class="nav-link" href="{{ path('show_article') }}">Show Articles</a></li>
                         <li><a class="nav-link" href="{{ path('app_logout') }}">Logout</a></li>

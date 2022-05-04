@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LivreController !{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-around flex-wrap">
+
+            {% for livres in pagination %}
+            <div class="card">
+                
+                <div class="card-header">
+                    Ajouté le {{ livres.date | date("d/m/Y") }}
+                </div>
+                {% if livres.image %}
+                    <img src="{{ vich_uploader_asset(livres, 'imageFile')|imagine_filter('square') }}" class="card-img-top">
+                {% else %}
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ livres.titre }}</h5>
+                    <p class="card-text">{{ livres.synopsis }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="container d-flex justify-content-around mt-4">
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+</div>
+{% endblock %}

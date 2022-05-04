@@ -9,3 +9,12 @@ vich_uploader:
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true
+
+        livre_images:
+            uri_prefix: '%livre_images%'
+            upload_destination: '%kernel.project_dir%/public%livre_images%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true

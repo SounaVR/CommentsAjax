@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Entity\Livre;
 use App\Entity\Article;
 use App\Entity\Comment;
 use App\Controller\Admin\UserCrudController;
@@ -44,6 +45,11 @@ class DashboardController extends AbstractDashboardController
             MenuItem::subMenu('Articles', 'fa fa-newspaper')->setSubItems([
                 MenuItem::linkToCrud('Liste des articles', 'fa fa-newspaper', Article::class),
                 MenuItem::linkToCrud('Ajouter un article', 'fa fa-plus', Article::class)->setAction(Crud::PAGE_NEW),
+            ]),
+
+            MenuItem::subMenu('Livres', 'fa fa-book')->setSubItems([
+                MenuItem::linkToCrud('Liste des livres', 'fa fa-book', Livre::class),
+                MenuItem::linkToCrud('Ajouter un livre', 'fa fa-plus', Livre::class)->setAction(Crud::PAGE_NEW),
             ]),
 
             MenuItem::subMenu('Users', 'fa fa-user')->setSubItems([

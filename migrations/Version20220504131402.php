@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220420093006 extends AbstractMigration
+final class Version20220504131402 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,16 +20,13 @@ final class Version20220420093006 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE comment ADD user_id INT NOT NULL');
-        $this->addSql('ALTER TABLE comment ADD CONSTRAINT FK_9474526CA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
-        $this->addSql('CREATE INDEX IDX_9474526CA76ED395 ON comment (user_id)');
+        $this->addSql('CREATE TABLE livre (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, titre VARCHAR(255) NOT NULL, synopsis VARCHAR(255) NOT NULL, date DATETIME NOT NULL, image VARCHAR(255) NOT NULL, INDEX IDX_AC634F99A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE livre ADD CONSTRAINT FK_AC634F99A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE comment DROP FOREIGN KEY FK_9474526CA76ED395');
-        $this->addSql('DROP INDEX IDX_9474526CA76ED395 ON comment');
-        $this->addSql('ALTER TABLE comment DROP user_id');
+        $this->addSql('DROP TABLE livre');
     }
 }
